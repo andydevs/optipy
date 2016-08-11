@@ -1,2 +1,2 @@
-# optipy
+# Optipy
 A python optimization library.
