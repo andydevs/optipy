@@ -10,6 +10,7 @@ Created: 8 - 11 - 2016
 # Imports
 import helper
 import numpy
+import numpy.linalg as lg
 
 def batch_descent(func, lenx, **kwargs):
 	"""
@@ -38,10 +39,9 @@ def batch_descent(func, lenx, **kwargs):
 
 	# Until gradient is smaller than or eaual to small change
 	# (or max iterations are reached)
-	while helper.magnitude(gradients) > epsilon and (maxiter == 0 or counter < maxiter):
+	while lg.norm(gradients) > epsilon and (maxiter == 0 or counter < maxiter):
 		# Batch compute gradients
-		for index in xrange(lenx): 
-			gradients[index] = helper.gradient(inputs, func, index, delta)
+		gradients = helper.gradient(inputs, func, **kwargs)
 
 		# Step in the negative direction
 		inputs -= gradients*step
@@ -78,9 +78,9 @@ def stochastic_descent(func, lenx, **kwargs):
 	counter   = 0
 
 	# Until gradient is smaller than or eaual to small change
-	while helper.magnitude(gradients) > epsilon and (maxiter == 0 or counter < maxiter):
+	while lg.norm(gradients) > epsilon and (maxiter == 0 or counter < maxiter):
 		# Compute gradient at counter
-		gradients[counter % lenx] = helper.gradient(inputs, func, counter % lenx, delta)
+		gradients[counter % lenx] = helper.gradient(inputs, func, counter % lenx, **kwargs)
 
 		# Step in the negative direction
 		inputs -= gradients*step
