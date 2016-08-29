@@ -20,20 +20,26 @@ def gradient(input, func, index=None, **kwargs):
 	@param index  the index to compute the gradient of (optional)
 	@param kwargs extra arguments
 		'delta' : the gradient change value
+		'gfunc' : a separate gradient function
 
 	@return the gradient of the function at the given input index
 			(or all gradients if index is not given)
 	"""
 	# Get kwargs
 	delta = kwargs.get('delta', 1e-10)
+	gfunc = kwargs.get('gfunc', None)
 
-	# If no index is given
-	if index is None:
+	# If no index or gfunc is given
+	if index is None and gfunc is None:
 		# Compute all gradients
 		return numpy.array([
 			gradient(input, func, jndex)
 				for jndex in xrange(len(input))
 		])
+	# If no index is given (but gfunc is given)
+	elif index is None:
+		# Compute gradient using gfunc
+		return gfunc(input)
 	else:
 		# Compute the delta vector
 		delta_x = numpy.zeros(len(input))
