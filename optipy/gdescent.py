@@ -20,15 +20,15 @@ def batch_descent(func, lenx, **kwargs):
 	@param func     the function to mininmize
 	@param lenx     the number of inputs being passed to the function
 	@param **kwargs extra arguments
-		'epsilon' what is considered a small change (defaults to 1e-1)
+		'epsilon' what is considered a small change (defaults to 1e-10)
 		'step'    the step change, or learning rate (defaults to 1e-4)
-		'delta'   the delta value used to calculate gradients (defaults to 1e-25)
+		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
 		'maxiter' the maximum number of iterations before the program stops
 					(if zero, program will not stop at max iterations. defaults to 0)
 	"""
 	# Get kwargs
-	delta   = kwargs.get('delta',   1e-25)
-	epsilon = kwargs.get('epsilon', 1e-1)
+	delta   = kwargs.get('delta',   1e-6)
+	epsilon = kwargs.get('epsilon', 1e-10)
 	step    = kwargs.get('step',    1e-4)
 	maxiter = kwargs.get('maxiter', 0)
 	
@@ -60,15 +60,14 @@ def stochastic_descent(func, lenx, **kwargs):
 	@param func     the function to mininmize
 	@param lenx     the number of inputs being passed to the function
 	@param **kwargs extra arguments
-		'epsilon' what is considered a small change (defaults to 1e-1)
+		'epsilon' what is considered a small change (defaults to 1e-10)
 		'step'    the step change, or learning rate (defaults to 1e-4)
-		'delta'   the delta value used to calculate gradients (defaults to 1e-25)
+		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
 		'maxiter' the maximum number of iterations before the program stops
 					(if zero, program will not stop at max iterations. defaults to 0)
 	"""
 	# Get kwargs
-	delta   = kwargs.get('delta',   1e-25)
-	epsilon = kwargs.get('epsilon', 1e-1)
+	epsilon = kwargs.get('epsilon', 1e-10)
 	step    = kwargs.get('step',    1e-4)
 	maxiter = kwargs.get('maxiter', 0)
 	
