@@ -12,7 +12,7 @@ import helper
 import numpy
 import numpy.linalg as lg
 
-def batch_descent(func, lenx, **kwargs):
+def batch(func, lenx, **kwargs):
 	"""
 	Performs batch gradient descent minimization on the 
 	given function with the given number of inputs
@@ -52,7 +52,7 @@ def batch_descent(func, lenx, **kwargs):
 	# Return the optimized values
 	return inputs
 
-def stochastic_descent(func, lenx, **kwargs):
+def stochastic(func, lenx, **kwargs):
 	"""
 	Performs stochastic gradient descent minimization on the 
 	given function with the given number of inputs

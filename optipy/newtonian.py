@@ -13,7 +13,7 @@ import numpy as np
 import numpy.random as rd
 import numpy.linalg as lg
 
-def newtons_method(func, lenx, **kwargs):
+def pure(func, lenx, **kwargs):
 	"""
 	Performs newton's method for minimization on the 
 	given function with the given number of inputs

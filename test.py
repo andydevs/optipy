@@ -13,16 +13,13 @@ Created: 8 - 11 - 2016
 import unittest
 
 # Optipy
-import helper   as opth
-import gdescent as optgd
-import newton   as optnt
+import optipy.helper           as opth
+import optipy.gradient_descent as optgd
+import optipy.newtonian        as optnt
 
 # Numpy
 import numpy
 import numpy.testing as npt
-
-# Time
-from time import clock
 
 class OptiPyTestCase(unittest.TestCase):
 	"""
@@ -102,13 +99,12 @@ class GradientDescentTestCase(OptiPyTestCase):
 	@author  Anshul Kharbanda
 	@created 8 - 13 - 2016
 	"""
-
 	def test_batch_descent(self):
 		"""
 		Test batch descent
 		"""
 		# Get result
-		result = optgd.batch_descent(self.function, self.numinputs, **self.options)
+		result = optgd.batch(self.function, self.numinputs, **self.options)
 
 		# Make sure result is not nan
 		self.assertFalse(numpy.isnan(result).any())
@@ -121,7 +117,7 @@ class GradientDescentTestCase(OptiPyTestCase):
 		Test stochastic descent
 		"""
 		# Get result
-		result = optgd.stochastic_descent(self.function, self.numinputs, **self.options)
+		result = optgd.stochastic(self.function, self.numinputs, **self.options)
 
 		# Make sure result is not nan
 		self.assertFalse(numpy.isnan(result).any())
@@ -129,7 +125,7 @@ class GradientDescentTestCase(OptiPyTestCase):
 		# Result should be close to actual
 		npt.assert_allclose(result, self.critical, atol=self.tol)
 
-class NewtonsMethodTestCase(OptiPyTestCase):
+class NewtonianTestCase(OptiPyTestCase):
 	"""
 	Tests newton's method for descent
 
@@ -141,7 +137,7 @@ class NewtonsMethodTestCase(OptiPyTestCase):
 		Tests newton's method
 		"""
 		# Get result
-		result = optnt.newtons_method(self.function, self.numinputs, **self.options)
+		result = optnt.pure(self.function, self.numinputs, **self.options)
 
 		# Make sure result is not nan
 		self.assertFalse(numpy.isnan(result).any())
