@@ -8,7 +8,7 @@ Created: 8 - 11 - 2016
 """
 
 # Modules
-import numpy
+import numpy as np
 
 def gradient(input, func, index=None, **kwargs):
 	"""
@@ -32,7 +32,7 @@ def gradient(input, func, index=None, **kwargs):
 	# If no index or gfunc is given
 	if index is None and gfunc is None:
 		# Compute all gradients
-		return numpy.array([
+		return np.array([
 			gradient(input, func, jndex)
 				for jndex in xrange(len(input))
 		])
@@ -42,7 +42,7 @@ def gradient(input, func, index=None, **kwargs):
 		return gfunc(input)
 	else:
 		# Compute the delta vector
-		delta_x = numpy.zeros(len(input))
+		delta_x = np.zeros(len(input))
 		delta_x[index] = delta
 
 		# Return gradient approximation at delta
@@ -61,10 +61,10 @@ def hessian(input, func, **kwargs):
 	delta = kwargs.get('delta', 1e-10)
 
 	# Create hessian matrix
-	Hessian = numpy.zeros((input.size, input.size))
+	Hessian = np.zeros((input.size, input.size))
 
 	# Create deltax vector
-	deltax = numpy.zeros(input.size)
+	deltax = np.zeros(input.size)
 
 	# For each index of the hessian
 	for index in xrange(Hessian.shape[0]):

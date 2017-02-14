@@ -9,7 +9,7 @@ Created: 8 - 11 - 2016
 
 # Imports
 import helper
-import numpy
+import numpy as np
 import numpy.linalg as lg
 
 def batch(func, lenx, **kwargs):
@@ -33,8 +33,8 @@ def batch(func, lenx, **kwargs):
 	maxiter = kwargs.get('maxiter', 0)
 	
 	# Initial inputs, gradients, and counter
-	inputs    = numpy.random.rand(lenx) 
-	gradients = numpy.zeros(lenx)
+	inputs    = np.random.rand(lenx) 
+	gradients = np.zeros(lenx)
 	counter   = 0
 
 	# Until gradient is smaller than or eaual to small change
@@ -72,8 +72,8 @@ def stochastic(func, lenx, **kwargs):
 	maxiter = kwargs.get('maxiter', 0)
 	
 	# Initial inputs and gradients (and counter)
-	inputs    = numpy.random.rand(lenx)
-	gradients = numpy.zeros(lenx)
+	inputs    = np.random.rand(lenx)
+	gradients = np.zeros(lenx)
 	counter   = 0
 
 	# Until gradient is smaller than or eaual to small change

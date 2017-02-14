@@ -15,7 +15,7 @@ from distutils.core import setup
 # Setup python module
 setup(
 	name="OptiPy",
-	version="1.0",
+	version="1.1",
 	description="A python optimization library.",
 	author="Anshul Kharbanda",
 	author_email="akanshul97@gmail.com",
