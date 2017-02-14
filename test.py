@@ -132,7 +132,7 @@ class NewtonianTestCase(OptiPyTestCase):
 	@author  Anshul Kharbanda
 	@created 8 - 13 - 2016
 	"""
-	def test_newtons_method(self):
+	def test_pure(self):
 		"""
 		Tests newton's method
 		"""
