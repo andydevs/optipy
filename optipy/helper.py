@@ -58,7 +58,7 @@ def hessian(input, func, **kwargs):
 		'delta' : the gradient (and hessian) change value
 	"""
 	# Get kwargs
-	delta = kwargs.get('delta', 1e-10)
+	delta = kwargs.get('delta', 1e-10)/2
 
 	# Create hessian matrix
 	Hessian = np.zeros((input.size, input.size))
