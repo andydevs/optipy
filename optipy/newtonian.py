@@ -15,8 +15,8 @@ import numpy.linalg as lg
 
 def pure(func, lenx, **kwargs):
 	"""
-	Performs newton's method for minimization on the 
-	given function with the given number of inputs
+	Performs newton's method for minimization on the given function with the
+	given number of inputs, computing pure Hessian
 
 	@param func     the function to mininmize
 	@param lenx     the number of inputs being passed to the function

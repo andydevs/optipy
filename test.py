@@ -13,7 +13,8 @@ Created: 8 - 11 - 2016
 import unittest
 
 # Optipy
-import optipy.helper           as opth
+import optipy
+import optipy.helper           as opthp
 import optipy.gradient_descent as optgd
 import optipy.newtonian        as optnt
 
@@ -27,7 +28,7 @@ class OptiPyTestCase(unittest.TestCase):
 
 	@author  Anshul Kharbanda
 	@created 8 - 13 - 2016
-	""" 
+	"""
 	def setUp(self):
 		"""
 		Sets up the unit test
@@ -53,7 +54,7 @@ class OptiPyTestCase(unittest.TestCase):
 		# The tolerance between the calculated and actual value
 		self.tol = (1 - 1e-10)
 
-class OptiPyHelperTestCase(OptiPyTestCase):
+class HelperTestCase(OptiPyTestCase):
 	"""
 	Tests optipy helper
 
@@ -65,7 +66,7 @@ class OptiPyHelperTestCase(OptiPyTestCase):
 		Sets up the unit test
 		"""
 		# Call super
-		super(OptiPyHelperTestCase, self).setUp()
+		super(HelperTestCase, self).setUp()
 
 		# Point values
 		self.test_point = numpy.array([ 2.0, 2.0 ])
@@ -76,7 +77,7 @@ class OptiPyHelperTestCase(OptiPyTestCase):
 		"""
 		# Expected and modeled gradient
 		self.expected = numpy.array([ 2.0, 2.0 ])
-		self.modeled  = opth.gradient(self.test_point, self.function, **self.options)
+		self.modeled  = opthp.gradient(self.test_point, self.function, **self.options)
 
 		# Assert close
 		npt.assert_allclose(self.expected, self.modeled, atol=self.tol)
@@ -87,7 +88,7 @@ class OptiPyHelperTestCase(OptiPyTestCase):
 		"""
 		# Expected and modeled hessian
 		self.expected = numpy.array([[1.0, 0.0], [0.0, 1.0]])
-		self.modeled  = opth.hessian(self.test_point, self.function,**self.options)
+		self.modeled  = opthp.hessian(self.test_point, self.function,**self.options)
 
 		# Assert close
 		npt.assert_allclose(self.expected, self.modeled, atol=self.tol)
@@ -144,7 +145,40 @@ class NewtonianTestCase(OptiPyTestCase):
 
 		# Result should be close to actual
 		npt.assert_allclose(result, self.critical, atol=self.tol)
-		
+
+class MainTestCase(OptiPyTestCase):
+	"""
+	Test optipy minimize and maximize
+
+	@author  Anshul Kharbanda
+	@created 2 - 23 - 2016
+	"""
+	def test_default_method(self):
+		"""
+		Asserts that default_optimizer is batch gradient descent by default
+		"""
+		self.assertEqual(optipy.default_optimizer, optgd.batch)
+
+	def test_minimize(self):
+		"""
+		Tests minimize method
+		"""
+		# Get result
+		result = optipy.minimize(self.function, self.numinputs, **self.options)
+
+		# Make sure result is not nan
+		self.assertFalse(numpy.isnan(result).any())
+
+		# Result should be close to actual
+		npt.assert_allclose(result, self.critical, atol=self.tol)
+
+# Build Suite
+suite = unittest.TestSuite()
+suite.addTests(unittest.TestLoader().loadTestsFromTestCase(HelperTestCase))
+suite.addTests(unittest.TestLoader().loadTestsFromTestCase(GradientDescentTestCase))
+suite.addTests(unittest.TestLoader().loadTestsFromTestCase(NewtonianTestCase))
+suite.addTests(unittest.TestLoader().loadTestsFromTestCase(MainTestCase))
+
 # Main method
 if __name__ == '__main__':
-	unittest.main()
+	unittest.TextTestRunner(verbosity=3).run(suite)
