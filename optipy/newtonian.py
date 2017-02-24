@@ -24,16 +24,18 @@ def pure(func, lenx, **kwargs):
 	@param **kwargs extra arguments
 		'epsilon' what is considered a small change (defaults to 1e-10)
 		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
+		'alpha'   the step change, or learning rate (defaults to 1e-4)
 		'maxiter' the maximum number of iterations before the program stops (defaults to sys.maxint)
 	"""
 	# Get kwargs
 	epsilon = kwargs.get('epsilon', 1e-10)
+	alpha   = kwargs.get('alpha',   1e-4)
 	maxiter = kwargs.get('maxiter', sys.maxint)
 
 	# Starting values
-	counter  = 0
-	inputs   = rd.rand(lenx)
-	shift    = (1 + epsilon)*np.ones(lenx)
+	counter = 0
+	inputs  = rd.rand(lenx)
+	shift   = (1 + epsilon)*np.ones(lenx)
 
 	# Until change is less than epsilon
 	while lg.norm(shift) > epsilon and (maxiter == 0 or counter < maxiter):
@@ -41,11 +43,8 @@ def pure(func, lenx, **kwargs):
 		gradient = helper.gradient(inputs, func, **kwargs)
 		hessian  = helper.hessian(inputs, func, **kwargs)
 
-		# Compute shift vector
-		shift = np.dot( gradient, lg.inv( hessian ) )
-
 		# Shift inputs
-		inputs -= shift
+		inputs -= alpha*np.dot( gradient, lg.inv( hessian ) )
 
 		# Increment counter
 		counter += 1

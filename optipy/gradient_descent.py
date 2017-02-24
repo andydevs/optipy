@@ -23,13 +23,13 @@ def batch(func, lenx, **kwargs):
 	@param **kwargs extra arguments
 		'epsilon' what is considered a small change (defaults to 1e-10)
 		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
-		'step'    the step change, or learning rate (defaults to 1e-4)
+		'alpha'   the step change, or learning rate (defaults to 1e-4)
 		'maxiter' the maximum number of iterations before the program stops defaults to sys.maxint)
 	"""
 	# Get kwargs
 	delta   = kwargs.get('delta',   1e-6)
 	epsilon = kwargs.get('epsilon', 1e-10)
-	step    = kwargs.get('step',    1e-4)
+	alpha    = kwargs.get('alpha',    1e-4)
 	maxiter = kwargs.get('maxiter', sys.maxint)
 
 	# Initial inputs, gradients, and counter
@@ -44,7 +44,7 @@ def batch(func, lenx, **kwargs):
 		gradients = helper.gradient(inputs, func, **kwargs)
 
 		# Step in the negative direction
-		inputs -= gradients*step
+		inputs -= gradients*alpha
 
 		# Increment counter
 		counter += 1
@@ -62,13 +62,13 @@ def stochastic(func, lenx, **kwargs):
 	@param **kwargs extra arguments
 		'epsilon' what is considered a small change (defaults to 1e-10)
 		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
-		'step'    the step change, or learning rate (defaults to 1e-4)
+		'alpha'   the step change, or learning rate (defaults to 1e-4)
 		'maxiter' the maximum number of iterations before the program stops
 					(if zero, program will not stop at max iterations. defaults to 0)
 	"""
 	# Get kwargs
 	epsilon = kwargs.get('epsilon', 1e-10)
-	step    = kwargs.get('step',    1e-4)
+	alpha    = kwargs.get('alpha',    1e-4)
 	maxiter = kwargs.get('maxiter', 0)
 
 	# Initial inputs and gradients (and counter)
@@ -82,7 +82,7 @@ def stochastic(func, lenx, **kwargs):
 		gradients[counter % lenx] = helper.gradient(inputs, func, counter % lenx, **kwargs)
 
 		# Step in the negative direction
-		inputs -= gradients*step
+		inputs -= gradients*alpha
 
 		# Increase counter
 		counter += 1

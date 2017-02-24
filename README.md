@@ -56,7 +56,7 @@ The following parameters are valid:
 |:---------|:---------------------------------------------|:-----------|
 | epsilon  | Zero slope threshold                         | 1e-10      |
 | delta    | Delta value used to compute gradient/hessian | 1e-6       |
-| step     | Step size, or learning rate                  | 1e-4       |
+| alpha    | Step size, or learning rate                  | 1e-4       |
 | maxiter  | Maximum iterations                           | sys.maxint |
 
 ## Optimization Algorithms
