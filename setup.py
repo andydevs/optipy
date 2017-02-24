@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """
 Program: OptiPy
 

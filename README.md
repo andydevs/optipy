@@ -12,9 +12,11 @@ Make sure you have numpy installed first.
 
 Define a function (using `lambda` or `def`). This function must contain one input argument (a numpy array) and return a scalar output.
 
+```python
 import numpy
 
 function = lambda x: 0.5*numpy.sum(x**2)
+```
 
 Use `optipy.minimize` to return the minimum of the function. Pass your function and the number of input arguments to minimize.
 
