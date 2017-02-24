@@ -29,7 +29,7 @@ def batch(func, lenx, **kwargs):
 	# Get kwargs
 	delta   = kwargs.get('delta',   1e-6)
 	epsilon = kwargs.get('epsilon', 1e-10)
-	alpha    = kwargs.get('alpha',    1e-4)
+	alpha   = kwargs.get('alpha',    1e-4)
 	maxiter = kwargs.get('maxiter', sys.maxint)
 
 	# Initial inputs, gradients, and counter
@@ -68,7 +68,7 @@ def stochastic(func, lenx, **kwargs):
 	"""
 	# Get kwargs
 	epsilon = kwargs.get('epsilon', 1e-10)
-	alpha    = kwargs.get('alpha',    1e-4)
+	alpha   = kwargs.get('alpha',    1e-4)
 	maxiter = kwargs.get('maxiter', 0)
 
 	# Initial inputs and gradients (and counter)
