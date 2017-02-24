@@ -8,6 +8,7 @@ Created: 8 - 11 - 2016
 """
 
 # Imports
+import sys
 import helper
 import numpy as np
 import numpy.linalg as lg
@@ -23,14 +24,13 @@ def batch(func, lenx, **kwargs):
 		'epsilon' what is considered a small change (defaults to 1e-10)
 		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
 		'step'    the step change, or learning rate (defaults to 1e-4)
-		'maxiter' the maximum number of iterations before the program stops
-					(if zero, program will not stop at max iterations. defaults to 0)
+		'maxiter' the maximum number of iterations before the program stops defaults to sys.maxint)
 	"""
 	# Get kwargs
 	delta   = kwargs.get('delta',   1e-6)
 	epsilon = kwargs.get('epsilon', 1e-10)
 	step    = kwargs.get('step',    1e-4)
-	maxiter = kwargs.get('maxiter', 0)
+	maxiter = kwargs.get('maxiter', sys.maxint)
 
 	# Initial inputs, gradients, and counter
 	inputs    = np.random.rand(lenx)

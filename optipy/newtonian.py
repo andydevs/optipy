@@ -8,6 +8,7 @@ Created: 8 - 11 - 2016
 """
 
 # Imports
+import sys
 import helper
 import numpy as np
 import numpy.random as rd
@@ -23,12 +24,11 @@ def pure(func, lenx, **kwargs):
 	@param **kwargs extra arguments
 		'epsilon' what is considered a small change (defaults to 1e-10)
 		'delta'   the delta value used to calculate gradients (defaults to 1e-6)
-		'maxiter' the maximum number of iterations before the program stops
-					(if zero, program will not stop at max iterations. defaults to 0)
+		'maxiter' the maximum number of iterations before the program stops (defaults to sys.maxint)
 	"""
 	# Get kwargs
 	epsilon = kwargs.get('epsilon', 1e-10)
-	maxiter = kwargs.get('maxiter', 0)
+	maxiter = kwargs.get('maxiter', sys.maxint)
 
 	# Starting values
 	counter  = 0

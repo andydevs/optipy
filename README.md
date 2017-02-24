@@ -52,12 +52,12 @@ optipy.minimize(func, 2, epsilon=1e-11, delta=1e-3)
 
 The following parameters are valid:
 
-| Argument | Description                                  | Defaults |
-|:---------|:---------------------------------------------|:---------|
-| epsilon  | Zero slope threshold                         | 1e-10    |
-| delta    | Delta value used to compute gradient/hessian | 1e-6     |
-| step     | Step size, or learning rate                  | 1e-4     |
-| maxiter  | Maximum iterations (infinity if = 0)         | 0        |
+| Argument | Description                                  | Defaults   |
+|:---------|:---------------------------------------------|:-----------|
+| epsilon  | Zero slope threshold                         | 1e-10      |
+| delta    | Delta value used to compute gradient/hessian | 1e-6       |
+| step     | Step size, or learning rate                  | 1e-4       |
+| maxiter  | Maximum iterations                           | sys.maxint |
 
 ## Optimization Algorithms
 
